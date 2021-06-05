@@ -1,7 +1,25 @@
+from bs4 import BeautifulSoup
+import requests
+
 class Bugsmusic(object):
-    def __init__(self):
-        self.url = url
 
-    def scrap(self):
-        pass
+    url = 'https://music.bugs.co.kr/chart/track/realtime/total?'
+    class_name = []
 
+    def set_url(self, detail):
+        # detail 은 url 뒤에 바뀌는 값
+        self.url = requests.get(f'{self.url}{detail}').text
+
+    def get_raking(self):
+        soup = BeautifulSoup(self.url, 'lxml')
+        ls1 = soup.find_all(name='p', attrs={"class":"title"})
+        for i in ls1:
+            print(i.find("a").text)
+
+    @staticmethod
+    def main():
+        bugs = Bugsmusic()
+        bugs.set_url('chartdate=20210605&charthour=15')
+        bugs.get_raking()
+
+Bugsmusic.main()
