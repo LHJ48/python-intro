@@ -14,7 +14,7 @@ class Bmi(object):
         self.weight = weight
 
     def get_bmi(self):
-        index = self.weight / (self.height ** 2 * 10000)
+        index = self.weight / (self.height ** 2 )
         if index >= 35:
             bmi = '고도 비만'
         elif index >= 30:
