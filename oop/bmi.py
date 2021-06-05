@@ -14,7 +14,7 @@ class Bmi(object):
         self.weight = weight
 
     def get_bmi(self):
-        index = self.weight / (self.height ** 2 )
+        index = self.weight / self.height ** 2 * 10000
         if index >= 35:
             bmi = '고도 비만'
         elif index >= 30:
@@ -27,6 +27,7 @@ class Bmi(object):
             bmi = '정상'
         else:
             bmi = '저체중'
+
         return bmi
 
     @staticmethod
@@ -39,7 +40,6 @@ class Bmi(object):
                 height = int(input('키 입력: '))
                 weight = int(input('몸무게 입력: '))
                 bmi = Bmi(height, weight)
-                bmi.get_bmi()
                 print(bmi.get_bmi())
             else:
                 print('메뉴 다시 설정')
